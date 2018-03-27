@@ -1,0 +1,20 @@
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        tokens = iter(re.findall('\d+|\S', s))
+        res = 0
+        sign = 1
+        
+        for token in tokens:
+            if token.isdigit():
+                num = int(token)
+            elif token in '+-':
+                res += sign*num
+                sign = 1 if token == '+' else -1
+            else:
+                tmp = int(next(tokens))
+                num = num*tmp if token == '*' else num//tmp
+        return res + sign*num

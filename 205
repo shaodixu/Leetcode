@@ -1,0 +1,13 @@
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        if len(s) != len(t):
+            return False
+        s_dic = {}
+        t_dic = {}
+        for i in range(len(s)):
+            if s_dic.get(s[i], '') != t_dic.get(t[i], ''):
+                return False
+            s_dic[s[i]] = i
+            t_dic[t[i]] = i
+        return True
+        

@@ -1,0 +1,41 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+       
+        n = len(board)
+
+        for i in range(n):
+            a = set()
+            for j in range(n):
+                num = board[i][j]
+                if num != '.':
+                    if a.__contains__(num):
+                        return False
+                    else:
+                        a.add(num)
+
+        for i in range(n):
+            a = set()
+            for j in range(n):
+                num = board[j][i]
+                if num != '.':
+                    if a.__contains__(num):
+                        return False
+                    else:
+                        a.add(num)
+
+        for i in range(n):
+            a = set()
+            for j in range(3):
+                for k in range(3):
+                    num = board[i / 3 * 3 + j][i % 3 * 3 + k]
+                    if num != '.':
+                        if a.__contains__(num):
+                            return False
+                        else:
+                            a.add(num)
+                            
+        return True

@@ -1,0 +1,27 @@
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+         
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        dp = [float('inf')] * (amount+1)
+        
+        dp[0] = 0
+        
+        for a in range(amount+1):
+            
+            for c in coins:
+                if c <= a:
+                    dp[a] = min(dp[a], 1 + dp[a-c])
+                    #print minWays[a]
+        #print minWays
+        if dp[amount] < float('inf'):
+            return dp[amount]
+        return -1

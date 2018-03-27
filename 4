@@ -1,0 +1,57 @@
+class Solution(object):
+    '''
+    
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        num = []
+        for i in range(len(nums1)):
+            num.append(nums1[i])
+        for j in range(len(nums2)):
+            num.append(nums2[j])
+       
+        num.sort()
+        if len(num) % 2 == 0:
+            k = (len(nums1) + len(nums2)) / 2
+            return (num[k-1] +num[k]) /2.0
+        else:
+            k = len(num) /2
+            return num[k]
+        '''
+        
+    def findMedianSortedArrays(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: float
+        """
+        if len(nums1) > len(nums2): 
+            return self.findMedianSortedArrays(nums2, nums1)
+        
+        n1, n2 = len(nums1), len(nums2)
+        k = (n1 + n2 + 1)/2
+        
+        l, r = 0, n1
+        while l < r:
+            m1 = l + ((r-l)>>1)
+            m2 = k - m1
+            if nums1[m1] < nums2[m2-1]:
+                l = m1 + 1
+            else:
+                r = m1
+                
+        m1, m2 = l, k - l
+        MIN_VAL, MAX_VAL = float("-inf"), float("inf")
+        c1 = max( MIN_VAL if m1<=0 else nums1[m1-1],
+                 MIN_VAL if m2<=0 else nums2[m2-1]
+                )
+        
+        if (n1+n2) & 1: return c1
+        
+        c2 = min(MAX_VAL if m1>=n1 else nums1[m1],
+                 MAX_VAL if m2>=n2 else nums2[m2]
+                )
+        return (c1 + c2) * 0.5

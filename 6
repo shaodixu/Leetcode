@@ -1,0 +1,23 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if numRows == 1:
+            return s
+        rows = []
+        for i in range(numRows):
+            rows += ['']
+        
+        for i ,c in enumerate(s):
+            index = i%(2*numRows -2)
+            if index < numRows:
+                rows[index] += c
+            else:
+                rows[2*numRows-2-index] +=c
+        ss = ''
+        for c in rows:
+            ss += c
+        return ss

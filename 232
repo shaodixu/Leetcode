@@ -1,0 +1,100 @@
+# class MyQueue(object):
+
+#     def __init__(self):
+#         """
+#         Initialize your data structure here.
+#         """
+        
+
+#     def push(self, x):
+#         """
+#         Push element x to the back of queue.
+#         :type x: int
+#         :rtype: void
+#         """
+        
+
+#     def pop(self):
+#         """
+#         Removes the element from in front of queue and returns that element.
+#         :rtype: int
+#         """
+        
+
+#     def peek(self):
+#         """
+#         Get the front element.
+#         :rtype: int
+#         """
+        
+
+#     def empty(self):
+#         """
+#         Returns whether the queue is empty.
+#         :rtype: bool
+#         """
+        
+class MyQueue(object):
+    """
+    use two stack to implement queue
+    operations of stack by list:
+        - push: append()
+        - pop: pop()
+        - peek: [-1]
+        - size: len()
+        - empty: not
+    @Runtime: 44 ms
+    """
+    def __init__(self):
+        """
+        initialize your data structure here.
+        push_stack: for push
+        pop_stack: for pop and peek
+        """
+        self.push_stack = []
+        self.pop_stack = []
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: nothing
+        """
+        self.push_stack.append(x)
+
+    def pop(self):
+        """
+        move elements from push_stack to pop_stack, then move back
+        :rtype: nothing
+        """
+        while self.push_stack:
+            self.pop_stack.append(self.push_stack.pop())
+        x = None
+        if self.pop_stack:
+            x = self.pop_stack.pop()
+        while self.pop_stack:
+            self.push_stack.append(self.pop_stack.pop())
+        return x
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+        if self.push_stack:
+            return self.push_stack[0]
+        return None
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return len(self.push_stack) == 0  
+        
+        
+        
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()

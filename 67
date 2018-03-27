@@ -1,0 +1,36 @@
+class Solution(object):
+    
+    
+    
+    
+    
+   
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        if not a: return b
+        if not b: return a
+        
+        carry = 0
+        rst = ""
+        i, j = len(a)-1, len(b)-1
+        while i > -1 or j > -1 or carry:
+            s = carry
+            if i > -1:
+                s += int(a[i])
+                i -= 1
+            if j > -1:
+                s += int(b[j])
+                j -= 1
+            carry = s/2    
+            rst += str(s%2)
+            
+            #carry = s >> 1
+            #rst += str(s & 1)
+        if carry != 0:
+            rst += str(remainder)
+            
+        return rst[::-1]

@@ -1,0 +1,22 @@
+class Solution(object):
+    def myPow(self, num, power):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if power == 0 or num == 1:
+            return 1
+        if power == 1:
+            return num
+        if power< 0:
+            return 1/(num*self.myPow(num, -(power + 1)))
+        res = 1
+        while(power > 1):
+            if power%2 == 1:
+                res *= num
+            num = num*num
+            power /= 2
+        res *= num
+        return res
+        

@@ -1,0 +1,51 @@
+class Solution(object):
+    def isSelfCrossing(self, x):
+        """
+        :type x: List[int]
+        :rtype: bool
+        """
+        if len(x) < 4: return False
+        n, w, s, e = x[0], -x[1], x[0] - x[2], x[3] - x[1] #range of n, w, s, e
+        if s >= 0 and e >= 0: return True
+        if e == 0: n = 0 #special case for e == 0
+        expand = e > 0 #judge if the screw is expanding or not
+        for i in range(4, len(x)):
+            mod = i % 4
+            if mod == 0: #North
+                N = s + x[i]
+                if not expand and N >= n: 
+                    return True
+                if expand and N <= n:
+                    expand = False
+                    if N >= n - x[i - 4]:
+                        w = e - x[i - 1] + x[i - 3]
+                n = N
+            elif mod == 1: #West
+                W = e - x[i]
+                if not expand and W <= w:
+                    return True
+                if expand and W >= w:
+                    expand = False
+                    if W <= w + x[i - 4]:
+                        s = n - x[i - 1] + x[i - 3]
+                w = W
+            elif mod == 2: #South
+                S = n - x[i]
+                if not expand and S <= s:
+                    return True
+                if expand and S >= s:
+                    expand = False
+                    if S <= s + x[i - 4]:
+                        e = w + x[i - 1] - x[i - 3]
+                s = S
+            else: #East
+                E = w + x[i]
+                if not expand and E >= e:
+                    return True
+                if expand and E <= e:
+                    expand = False
+                    if E >= e - x[i - 4]:
+                        n = s + x[i - 1] - x[i - 3]
+                e = E
+        return False
+        

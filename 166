@@ -1,0 +1,31 @@
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
+        """
+        :type numerator: int
+        :type denominator: int
+        :rtype: str
+        """
+        
+        res=''
+        if numerator*denominator<0:
+            res='-'
+        numerator=abs(numerator)
+        denominator=abs(denominator)
+        res+=str(numerator//denominator)
+        remainer=numerator%denominator
+        if remainer==0:
+            return res
+        res+='.'
+        i=len(res)
+        d={str(remainer):i}
+        while remainer!=0:
+            res+=str(remainer*10//denominator)
+            remainer=(remainer*10)%denominator
+            if str(remainer) in d:
+                res=res[:d[str(remainer)]]+'('+res[d[str(remainer)]:]+')'
+                return res
+            else:
+                d[str(remainer)]=len(res)
+        return res
+
+       

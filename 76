@@ -1,0 +1,43 @@
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        if s == None or t == None or len(s) == 0 or len(t) == 0:
+            return ""
+        matchCount =0
+        res = ""
+        tArr = [0]*256
+        for c in t:
+            tArr[ord(c)] += 1
+        sArr = [0]*256
+        left = self.findNextStrIdx(0, s, tArr)
+        if left == len(s):
+            return ""
+        right = left
+        while right<len(s):
+            rightChar = s[right]
+            if sArr[ord(rightChar)] < tArr[ord(rightChar)]:
+                matchCount += 1
+            sArr[ord(rightChar)] += 1
+            while left < len(s) and matchCount == len(t):
+                if not res or len(res) > right-left+1:
+                    res = s[left:right+1]
+                leftChar = s[left]
+                if sArr[ord(leftChar)] <= tArr[ord(leftChar)]:
+                    matchCount -= 1
+                sArr[ord(leftChar)] -= 1
+                left = self.findNextStrIdx(left+1, s, tArr)
+            right = self.findNextStrIdx(right+1, s, tArr)
+        return res
+    
+    
+    def findNextStrIdx(self, start, s, tArr):
+        while start < len(s):
+            c  = s[start]
+            if tArr[ord(c)] != 0:
+                return start
+            start += 1
+        return start

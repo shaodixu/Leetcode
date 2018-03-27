@@ -1,0 +1,81 @@
+# class Solution(object):
+#     def addOperators(self, num, target):
+#         """
+#         :type num: str
+#         :type target: int
+#         :rtype: List[str]
+#         """
+# #         res = []
+# #         if not num or len(num) == 0: return res
+# #         self.helper(res, " ", num, target, 0,0,0)
+# #         return res
+    
+# #     def helper(self, res, path, num, target, pos, val, pre):
+# #         if pos == len(num):
+# #             if target == val:
+# #                 res.add(path)
+# #                 return 
+# #         for i in range(pos, len(num)):
+# #             if i != pos and num[pos] == "0": break
+# #             cur = num[pos:(i+2)]
+# #             if pos == 0:
+# #                 self.helper(res, path + cur, num, target, i+1, cur, cur)
+# #             else:
+# #                 self.helper(res, path + "+" + cur, num, target, i+1, val + cur, cur)
+# #                 self.helper(res, path + "-" + cur, num, target, i+1, val - cur, cur)
+# #                 self.helper(res, path + "*" + cur, num, target, i+1, val - pre + pre*cur, pre*cur)
+
+# class Solution(object):
+#     def addOperators(self, num, target):
+#         if not num:
+#             return []
+#         res = []
+#         def helper(s, a, b, c, p):
+#             if p == len(num):
+#                 if a + b * c == 0:
+#                     res.append(s)
+#             else:
+#                 car = num[p]
+#                 d = int(num[p])
+#                 if c:
+#                     helper(s + car, a, b, 10 * c + d, p + 1)
+#                 helper(s + "-" + car, a + b * c, -1, d, p + 1)
+#                 helper(s + "+" + car, a + b * c, 1, d, p + 1)
+#                 helper(s + "*" + car, a, b * c, d, p + 1)
+#         helper(num[0], -target, 1, int(num[0]), 1)
+#         return res
+    
+
+    
+# backtracking
+# time unknown, space O(n)
+class Solution(object):
+    def addOperators(self, num, target):
+        """
+        :type num: str
+        :type target: int
+        :rtype: List[str]
+        """
+        self.res = []
+        self.dfs(num, target, '', 0, 0)
+        return self.res
+    
+    
+    def dfs(self, num, target, curr_sol, curr_num, prev_num):
+        if len(num) == 0 and curr_num == target:
+            self.res.append(curr_sol)
+            return
+        
+        for i in range(1, len(num)+1):
+            sub_num = num[0:i]
+            res_num = num[i:]
+            
+            if len(sub_num) >= 2 and sub_num[0] == '0':
+                continue
+            
+            if curr_sol == '':
+                self.dfs(res_num, target, sub_num, int(sub_num), int(sub_num))
+            else:
+                self.dfs(res_num, target, curr_sol + '+' + sub_num, curr_num + int(sub_num), int(sub_num))
+                self.dfs(res_num, target, curr_sol + '-' + sub_num, curr_num - int(sub_num), -int(sub_num))
+                self.dfs(res_num, target, curr_sol + '*' + sub_num, curr_num - prev_num + prev_num * int(sub_num), prev_num * int(sub_num))

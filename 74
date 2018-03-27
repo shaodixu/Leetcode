@@ -1,0 +1,27 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        
+    
+    
+        if not matrix or len(matrix) == 0:
+            return False
+        row = len(matrix)
+        col = len(matrix[0])
+        begin = 0
+        end = row * col -1
+        while begin <= end:
+            mid = (end-begin)/2 + begin
+            value = matrix[mid/col][mid%col]
+            if value == target:
+                return True
+            elif value < target:
+                begin = mid + 1
+            else:
+                end = mid - 1
+        return False
+    

@@ -1,0 +1,16 @@
+class Solution(object):
+    def reverseStr(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        res = ""
+        flag = -1
+        for i in range(0,len(s),k):
+            res += s[i:i+k][::flag]
+            flag *= -1
+        return res
+    
+    
+   

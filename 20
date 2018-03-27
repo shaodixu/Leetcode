@@ -1,0 +1,14 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        lookup = {"(":")", "[":"]", "{":"}"}
+        for a in s:
+            if a in lookup:
+                stack.append(a)
+            elif len(stack) == 0 or lookup[stack.pop()] != a:
+                return False
+        return len(stack) == 0

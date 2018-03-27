@@ -1,0 +1,9 @@
+class Solution(object): 
+    def numSquares(self, n): 
+        squares = [i ** 2 for i in range(2, int(n ** 0.5) + 1)] 
+        dp = range(n + 1) 
+        dp[0] = 0 
+        for i in squares: 
+            for j in range(i, n + 1): 
+                dp[j] = min(dp[j - i] + 1, dp[j]) 
+        return dp[-1]

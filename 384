@@ -1,0 +1,33 @@
+class Solution(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.__nums = nums
+        
+
+    def reset(self):
+        """
+        Resets the array to its original configuration and return it.
+        :rtype: List[int]
+        """
+        return self.__nums
+        
+
+    def shuffle(self):
+        """
+        Returns a random shuffling of the array.
+        :rtype: List[int]
+        """
+        nums1 = list(self.__nums)
+        for i in range(len(nums1)):
+            j = random.randint(i, len(nums1)-1)
+            nums1[i], nums1[j] = nums1[j], nums1[i]
+        return nums1
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.reset()
+# param_2 = obj.shuffle()

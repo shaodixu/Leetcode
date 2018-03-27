@@ -1,0 +1,33 @@
+class Solution(object):
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        
+        
+        
+        for i in xrange(len(board)):
+            for j in xrange(len(board[0])):
+                if self.existRecu(board, word, 0, i, j):
+                    return True
+        
+        return False
+    
+    def existRecu(self, board, word, cur, i, j):
+        if cur == len(word):
+            return True
+        
+        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[cur]:
+            return False
+        
+        c = board[i][j]
+        board[i][j] = "#"
+        result = self.existRecu(board, word, cur + 1, i + 1, j) or\
+                 self.existRecu(board, word, cur + 1, i - 1, j) or\
+                 self.existRecu(board, word, cur + 1, i, j + 1) or\
+                 self.existRecu(board, word, cur + 1, i, j - 1)         
+        board[i][j] = c
+        
+        return result

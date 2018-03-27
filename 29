@@ -1,0 +1,23 @@
+class Solution(object):
+    def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+       
+        sign = -1 if dividend^divisor<0 else 1
+        dividend, divisor = abs(dividend), abs(divisor)
+        res = 0
+        while dividend>=divisor:
+            i = 0
+            while dividend>=(divisor<<i):
+                i += 1
+            res += 1<<(i-1)
+            dividend -= divisor<<(i-1)
+        res *= sign
+        if res>2**31-1 or res<-2**31: return 0x7FFFFFFF
+        return res
+
+    
+    

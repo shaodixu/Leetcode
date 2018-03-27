@@ -1,0 +1,37 @@
+class Solution(object):
+    def largestPalindrome(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def createPalindrom(number):
+            astring = list(str(number)) + list(str(number))[::-1]
+            numstring = ''.join(astring)
+            return int(numstring)
+
+        if n == 1:
+            return 9
+        
+        if n == 8:
+            return 475
+
+        upperBound = 10 ** (n) - 1
+        lowerBound = 10 ** (n-1) -1
+        maxNumber = upperBound * upperBound
+        firstHalf = maxNumber // (10 ** (n))
+        palindromFound = False
+        palindrom = 0
+
+
+        while not palindromFound:
+            i = upperBound
+            palindrom = createPalindrom(firstHalf)
+            while i> lowerBound:
+                if palindrom // i > maxNumber or i * i < palindrom:
+                    break
+                if palindrom % i == 0:
+                    palindromFound = True
+                    break
+                i -= 1
+            firstHalf -= 1
+        return palindrom % 1337

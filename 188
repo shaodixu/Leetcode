@@ -1,0 +1,31 @@
+class Solution(object):
+    def maxProfit(self, k, prices):
+        """
+        :type k: int
+        :type prices: List[int]
+        :rtype: int
+        """
+        n = len(prices)
+        if k*2 >= n:
+            return self.quickSolution(n, prices)
+        
+        dp = [None]*(2*k + 1)
+        dp[0] = 0
+        
+        for i in range(len(prices)):
+            for j in range(1,min(i+1, 2*k)+1):
+                if j %2 == 1:
+                    dp[j] = max(dp[j], dp[j-1] - prices[i])
+                else:
+                    dp[j] = max(dp[j], dp[j-1] + prices[i])
+        return dp[-1]
+    
+    
+    def quickSolution(self, n, prices):
+        sum = 0
+        for i in range(n-1):
+            if prices[i+1] > prices[i]:
+                sum += prices[i+1] - prices[i]
+                
+        return sum
+        

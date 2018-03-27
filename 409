@@ -1,0 +1,20 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+       
+       
+        ans = odd = 0
+        cnt = collections.Counter(s)
+        for c in cnt:
+           
+            if cnt[c] % 2 == 0:
+                ans += cnt[c]
+            else:
+                ans += cnt[c] -1
+                
+            if cnt[c] %2 == 1:
+                odd = 1
+        return ans + odd

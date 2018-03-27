@@ -1,0 +1,20 @@
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        
+        m = collections.Counter(nums)
+        bucket = [[] for _ in range(len(nums)+1)]
+        result = []
+        
+        for i, count in m.items():
+            bucket[count].append(i)
+        
+        for i in reversed(range(len(bucket))):
+            for j in range(len(bucket[i])):
+                result.append(bucket[i][j])
+                if len(result) == k:
+                    return result

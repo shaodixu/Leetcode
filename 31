@@ -1,0 +1,38 @@
+class Solution(object):
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        if n < 2:
+            return
+        j = n - 2
+        
+        #find a postion where it is smaller than the next one
+        #j will be the position
+        while(j >= 0) & (nums[j] >= nums[j + 1]):
+            j -= 1
+        
+        #couldn't find a possible solution
+        if j < 0:
+            nums.sort()
+            return
+        
+        #found the smallest number that's bigger than j
+        i = j + 1
+        while (nums[i] > nums[j]):
+            i += 1
+            if i == n:
+                break
+        i -= 1
+        
+        #swap
+        temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+        
+        nums[j + 1 :] = sorted(nums[j + 1 :])
+        
+        print nums
+        return

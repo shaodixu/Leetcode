@@ -1,0 +1,16 @@
+class Solution(object):
+    def convertToBase7(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+     
+    
+        ans = ''
+        res = abs(num)
+        while True:
+            ans = str(res % 7) + ans 
+            res = res / 7
+            if res == 0:
+                break 
+        return '-'+ ans if num < 0 else ans

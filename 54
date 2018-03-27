@@ -1,0 +1,33 @@
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        
+        fin = []
+        if(len(matrix) == 0):
+            return []
+        rStart = 0
+        rEnd = len(matrix)-1
+        cStart = 0
+        cEnd = len(matrix[0])-1
+        while(rStart <= rEnd and cStart <= cEnd):
+            for j in range(cStart, cEnd+1):
+                fin.append(matrix[rStart][j])
+            rStart+=1
+
+            for k in range(rStart, rEnd+1):
+                fin.append(matrix[k][cEnd])
+            cEnd-=1
+
+            if(rStart > rEnd or cStart > cEnd):
+                break
+
+            for n in range(cEnd, cStart-1, -1):
+                fin.append(matrix[rEnd][n])
+            rEnd-=1
+            for m in range(rEnd, rStart-1, -1):
+                fin.append(matrix[m][cStart])
+            cStart+=1
+        return fin

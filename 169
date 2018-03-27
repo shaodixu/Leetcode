@@ -1,0 +1,21 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        a = {}
+        b = 0
+        c = 0
+        for i in nums:
+            if i in a:
+                a[i] = a[i]+1
+            else:
+                a[i] = 1
+        
+            if a[i] > len(nums)/2:
+                b = i
+                
+            
+        return b

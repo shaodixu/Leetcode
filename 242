@@ -1,0 +1,29 @@
+class Solution(object):
+    
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        
+        if len(s) != len(t):
+            return False
+        count = {}
+        
+        for a in s:
+            count[a.lower()] = count[a.lower()]+1 if a.lower() in count else 1
+           
+                
+        for b in t:
+            if b.lower() in count:
+                count[b.lower()] -= 1
+            else:
+                return False
+            
+            if count[b.lower()]<0:
+                return False
+        return True
+
+    
+    #return sorted(s) == sorted(t)

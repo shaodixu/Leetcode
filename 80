@@ -1,0 +1,15 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums or len(nums) <=2:
+            return len(nums)
+        loc = 2
+        for i in range(2, len(nums)):
+            if not (nums[loc-1] == nums[loc-2] and nums[loc-1] == nums[i]):
+                nums[loc] = nums[i]
+                loc += 1
+        return loc
+        

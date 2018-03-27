@@ -1,0 +1,13 @@
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        rob = 0
+        notRob = 0
+        for num in nums:
+            pre = max(notRob, rob)
+            rob = notRob + num
+            notRob = pre
+        return max(rob, notRob)

@@ -1,0 +1,29 @@
+
+class Solution(object):  
+
+        
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        R=[]
+        if not nums:
+            return []
+       
+        
+        for i in nums:
+            
+            x = i
+            y = x
+            if i-1 not in nums:
+                while i+1 in nums:
+                    y = i+1
+                    # print(y)
+                    i=i+1
+                if x==y:
+                    R.append(str(x))
+                else:
+                    R.append(str(x)+"->"+str(y))
+            # print(R)
+        return R

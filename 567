@@ -1,0 +1,40 @@
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        
+        # sliding window
+        target, window = [0] * 26, [0] * 26
+        for char in s1:
+            target[ord(char)-ord("a")] += 1
+        L = len(s1)
+        for i, char in enumerate(s2):
+            window[ord(char)-ord("a")] += 1 #better to turn all this into numerical index at first. 
+            if i >= L:
+                window[ord(s2[i-L]) - ord("a")] -= 1
+            if window == target:
+                return True
+        return False
+    
+    
+    
+#     L1, L2= len(s1), len(s2)
+#         if L1 > L2:   return False
+        
+#         d1, d2= {}, {}
+#         for c in 'abcdefghijklmnopqrstuvwxyz':  d1[c], d2[c]= 0, 0
+        
+#         for i in range(L1): 
+#             d1[s1[i]] += 1
+#             d2[s2[i]] += 1
+#         if d1==d2:    return True
+        
+#         for i in range(L2-L1):
+#             d2[s2[i]] -= 1
+#             d2[s2[i+L1]] += 1
+#             if d1==d2:    return True
+
+#         return False

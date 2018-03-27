@@ -1,0 +1,63 @@
+   
+class Solution(object):
+    def canFinish(self, n, prerequisites):
+        indegree={i:0 for i in range(n)}
+        listofedges=[[] for i in range(n)]
+        for now,pre in prerequisites:
+            indegree[now]+=1
+            listofedges[pre].append(now)
+        stack=[]
+        for i in indegree:
+            if indegree[i]==0:
+                stack.append(i)
+        while stack:
+            newstack=[]
+            for i in stack:
+                for t in listofedges[i]:#i->t
+                    indegree[t]-=1#delete the last edge
+                    if indegree[t]==0:
+                        newstack.append(t)
+            stack=newstack
+        for i in indegree:#all the degree should be zero if no cycle
+            if indegree[i]!=0:
+                return False
+        return True
+    
+    
+'''
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        graph = [[] for _ in xrange(numCourses)]
+        visit = [0 for _ in xrange(numCourses)]
+        
+        for x, y in prerequisites:
+            graph[x].append(y)
+        print graph
+            
+        for i in xrange(numCourses):
+            if self.dfs(visit, graph, i):
+                return False
+        return True
+        
+    def dfs(self, visit, graph, i):
+        # the graph has no cycle
+        if visit[i] == 2: 
+            return False
+        # the graph has  cycle
+        if visit[i] == 1:
+            return True
+        # mark it as 
+        visit[i] = 1
+        # visit all the neighbours
+        for j in graph[i]:
+            if self.dfs(visit, graph, j):
+                return True
+        # it is done visiting all neighbours
+        visit[i] = 2
+        return False
+        '''

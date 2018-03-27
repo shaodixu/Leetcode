@@ -1,0 +1,35 @@
+from random import randint
+
+class Solution:
+    # @param {integer[]} nums
+    # @param {integer} k
+    # @return {integer}
+    
+    def findKthLargest(self, nums, k):
+        left, right = 0, len(nums) - 1
+        while True:
+            
+            new_pivot_idx = self.PartitionAroundPivot(left, right, nums)
+            if new_pivot_idx == k - 1:
+                return nums[new_pivot_idx]
+            elif new_pivot_idx > k - 1:
+                right = new_pivot_idx - 1
+            else:  # new_pivot_idx < k - 1.
+                left = new_pivot_idx + 1
+        
+    def PartitionAroundPivot(self, left, right, nums):
+        pivot = nums[left]
+        l = left + 1
+        r = right
+        while l <= r:
+            if nums[l] < pivot and nums[r] > pivot:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r -= 1
+            if nums[l] >= pivot:
+                l +=1
+            if nums[r] <= pivot:
+                r -= 1
+        nums[left], nums[r] = nums[r], nums[left]
+        return r
+      

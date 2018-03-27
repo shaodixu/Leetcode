@@ -1,0 +1,19 @@
+class Solution(object):
+    def rob(self, nums):
+        if not nums or len(nums) == 0:
+            return 0
+        n = len(nums)
+        if n == 1:
+            return nums[0]
+        rob_rf = [0] *n
+        nrob_rf = [0]*n
+        rob_nrf = [0]*n
+        nrob_nrf = [0]*n
+        rob_rf[0] = nums[0]
+        
+        for i in range(1, n):
+            rob_rf[i] = nrob_rf[i-1]+nums[i]
+            nrob_rf[i] = max(nrob_rf[i-1], rob_rf[i-1])
+            rob_nrf[i] = nrob_nrf[i-1] + nums[i]
+            nrob_nrf[i] = max(nrob_nrf[i-1], rob_nrf[i-1])
+        return max(nrob_rf[n-1], rob_nrf[n-1])

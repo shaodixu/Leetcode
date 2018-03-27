@@ -1,0 +1,19 @@
+class Solution(object):
+    def numberOfBoomerangs(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        
+    
+    
+        res = 0
+        for point in points:
+            tem = {}
+            for p in points :
+                a = p[0] - point[0]
+                b = p[1] - point[1]
+                tem[a*a+b*b] = tem.get(a*a+b*b,0)+1
+            for val in tem.values():
+                res += val * (val-1)
+        return res

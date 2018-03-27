@@ -1,0 +1,29 @@
+class Solution(object):
+     def myAtoi(self, s):
+        """
+        :type str: str
+        :rtype: int
+        """
+        s = s.strip() # ❤️ 去掉❤️前后❤️的空格 " "
+        if not s: return 0
+        
+        sign, start = 1, 0
+        if s[0] == "+":
+            start += 1
+            sign = 1
+        elif s[0] == "-":
+            start += 1
+            sign = -1
+        
+        i = start
+        while i < len(s) and s[i].isdigit(): i += 1
+        rst = s[start:i]
+        if not rst: return 0
+        rst = int(rst)
+        
+        MAX_INT, MIN_INT = 2**31 - 1, -2**31
+        if sign == 1:
+            return MAX_INT if rst > MAX_INT else rst
+        else:
+            rst = rst * sign
+            return MIN_INT if rst < MIN_INT else rst

@@ -1,0 +1,29 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findTarget(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: bool
+        """
+        if root == None: return False
+        res = []
+        def inorder(root):
+            if root == None:
+                return 
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+        inorder(root)
+        lookup = {}
+        for i, num in enumerate(res):
+            if k-num in lookup:
+                return True
+            lookup[num] = i
+        return False

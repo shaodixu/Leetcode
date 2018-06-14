@@ -9,3 +9,19 @@ class Solution(object):
         for num in nums:
             ans ^= num
         return ans
+
+
+def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lookup = {}
+        for num in nums:
+            if num not in lookup:
+                lookup[num] = 0
+            
+            lookup[num] += 1
+        for key, value in lookup.items():
+            if value == 1:
+                return key

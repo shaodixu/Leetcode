@@ -11,3 +11,42 @@ class Solution(object):
                 if i == len(string) or strs[0][i] != string[i]:
                     return strs[0][:i]
         return strs[0]
+
+
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if (strs.empty()){
+            return "";
+        }
+        else if (strs.size() == 1){
+            return strs[0];
+        }
+        
+        int minLength = 0;
+        for (vector<string>::iterator iter = strs.begin(); iter != strs.end(); ++iter){
+            if (iter->size() > minLength){
+                minLength = (int)iter->size();
+            }
+        }
+        
+        string prefix;
+        for (int i = 0; i < minLength; ++i){
+            prefix.push_back(strs[0][i]);
+            for (vector<string>::iterator iter = strs.begin(); iter != strs.end(); ++iter){
+                if  (prefix.back() != (*iter)[i]) {
+                    prefix.pop_back();
+                    return prefix;
+                }
+            }
+        }
+        return prefix;
+        
+        
+        
+        
+        
+        
+    }
+};

@@ -9,3 +9,18 @@ class Solution(object):
         for i in range(n):
             output = (ord(s[i])-ord('A')+1) + output*26
         return output
+
+
+
+
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int number = 0;
+        for (const auto& c : s){
+            number *= 26;
+            number += c - 'A' + 1;
+        }
+        return number;
+    }
+};

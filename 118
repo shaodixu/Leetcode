@@ -13,3 +13,50 @@ class Solution(object):
                 else:
                     ret[i].append(ret[i-1][j-1]+ret[i-1][j])
         return ret
+
+
+
+class Solution:
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        if numRows == 0:
+            return []
+        if numRows == 1:
+            return [[1]]
+        if numRows == 2:
+            return [[1], [1,1]]
+        
+        b=[[1], [1,1]]
+        for i in range(2, numRows):
+            a = []
+            for k in range(0,i+1):
+                if k == 0 or k == i:
+                    a.append(1)
+                else:
+                    a.append(b[i-1][k-1] + b[i-1][k])
+                
+            b.append(a)
+        return b
+        
+        
+        
+ class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> result;
+        for (int i = 0; i < numRows; ++i){
+            result.push_back({});
+            for (int j = 0; j <= i; ++j){
+                if (j == 0 || j == i){
+                    result[i].emplace_back(1);
+                }else{
+                    result[i].emplace_back(result[i-1][j-1] + result[i-1][j]);
+                }
+            }
+        }
+        return result;
+    }
+};

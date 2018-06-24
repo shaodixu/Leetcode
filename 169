@@ -19,3 +19,36 @@ class Solution(object):
                 
             
         return b
+
+
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return None
+        a = {}
+        for num in nums:
+            if num not in a:
+                a[num] = 1
+            else:
+                a[num] += 1
+        for key in a:
+            if a[key] > len(nums)/2:
+                return key
+        return None
+        
+        
+ class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int, int> mapNums;
+        for (int i = 0; i < nums.size(); ++i){
+            ++mapNums[nums[i]];
+            if (mapNums[nums[i]] > nums.size()/2)return nums[i];
+        }
+        return 0;
+    }
+};

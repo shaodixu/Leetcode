@@ -10,3 +10,32 @@ class Solution(object):
             cnt += n / 5
             n /= 5
         return cnt 
+
+
+
+
+class Solution:
+    def trailingZeroes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        result = 0
+        count = 0
+        while n > 0:
+            count += n//5
+            n = n//5
+        return count
+        
+        
+ class Solution {
+public:
+    int trailingZeroes(int n) {
+        int number = 0;
+        while (n > 0){
+            number += n / 5;
+            n /= 5;
+        }
+        return number;
+    }
+};

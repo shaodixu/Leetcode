@@ -11,3 +11,57 @@ class Solution(object):
         
         return row[0]
         
+
+class Solution(object):
+    def getRow(self, rowIndex):
+        row= [1]
+        for i in range(1,rowIndex+1):
+            row.append(0)
+            for j in range(i, 0, -1):
+                if j==i:
+                    row[j]=1
+                else:
+                    row[j]+=row[j-1]
+        
+        return row
+
+
+class Solution:
+    def getRow(self, rowIndex):
+        """
+        :type rowIndex: int
+        :rtype: List[int]
+        """
+        if rowIndex == 0:
+            return [1]
+        if rowIndex == 1:
+            return [1,1]
+      
+        
+        b=[[1], [1,1]]
+        for i in range(2, rowIndex+1):
+            a = []
+            for k in range(0,i+1):
+                if k == 0 or k == i:
+                    a.append(1)
+                else:
+                    a.append(b[i-1][k-1] + b[i-1][k])
+                
+            b.append(a)
+        return b[-1]
+        
+ class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> result(rowIndex +1);
+        for (int i = 0; i < result.size(); ++i){
+            int prev_result = result[0] = 1;
+            for (int j = 1; j <= i; ++j){
+                const int tmp = result[j];
+                result[j] += prev_result;
+                prev_result = tmp;
+            }
+        }
+        return result;
+    }
+};

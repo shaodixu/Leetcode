@@ -10,3 +10,36 @@ class Solution(object):
             res = chr(n%26 + ord("A")) + res
             n = n/26
         return res
+
+
+
+class Solution:
+    def convertToTitle(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        if n == 0:
+            return ""
+        result = []
+        while n > 0:
+            n, rem = divmod(n-1, 26)
+            result.append(chr(ord('A') + rem))
+        return "".join(reversed(result))
+        
+        
+        
+ class Solution {
+public:
+    string convertToTitle(int n) {
+        string result;
+        int dvd{n};
+        
+        while (dvd) {
+            result.push_back((dvd - 1) %26 + 'A');
+            dvd = (dvd - 1) /26;
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
+};

@@ -19,3 +19,44 @@ class Solution(object):
             else:
                 i += 1
         return res  
+
+
+
+
+class Solution:
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        
+    
+    
+    
+#         res = []
+#         map = {}
+#         for i in nums1:
+#             map[i] = map[i]+1 if i in map else 1
+#         for j in nums2:
+#             if j in map and map[j] > 0:
+#                 res.append(j)
+#                 map[j] -= 1
+
+#         return res
+    
+        
+        result = []
+        a = {}
+        for i in nums1:
+            if i not in a:
+                a[i] = 1
+            else:
+                a[i] += 1
+        
+        for num in nums2:
+            if num in a:
+                a[num] -= 1
+                if a[num] >=0:
+                    result.append(num)
+        return result

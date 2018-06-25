@@ -1,0 +1,19 @@
+class Solution:
+    def wordPattern(self, pattern, str):
+        """
+        :type pattern: str
+        :type str: str
+        :rtype: bool
+        """
+        string = str.split(" ")
+        if len(pattern) != len(string):
+            return False
+        a = {}
+        b = {}
+        
+        for i in range(len(pattern)):
+            if a.get(pattern[i], '') != b.get(string[i], ''):
+                return False
+            a[pattern[i]] = i
+            b[string[i]] = i
+        return True

@@ -9,7 +9,7 @@ class Solution:
         start = 1
         
         
-        #
+        # zhao di ji ge shu in a given region.
         while n > len*count:
             n -= len*count
             len += 1

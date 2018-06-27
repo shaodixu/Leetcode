@@ -20,6 +20,7 @@ class Solution:
         
         return left 
 
+374
 class Solution(object):
     def guessNumber(self, n):
         """

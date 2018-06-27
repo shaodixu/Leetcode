@@ -12,3 +12,7 @@ class Solution(object):
             mi= min(mi, price)
             res  = max(res, price-mi)
         return res
+
+
+
+# solution 2. maximum sybarray

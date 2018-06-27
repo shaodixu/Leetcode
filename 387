@@ -11,3 +11,24 @@ class Solution(object):
             if lookup[s[i]] == 1:
                 return i
         return -1
+
+
+
+class Solution:
+    def firstUniqChar(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if s == '':
+            return -1
+        dic = {}
+        for char in s:
+            dic[char] = dic[char] + 1 if char in dic else 1
+        
+        
+        for i, char in enumerate(s):
+            if dic[char] == 1:
+                return i
+        return -1
+                

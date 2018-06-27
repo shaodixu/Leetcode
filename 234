@@ -37,3 +37,44 @@ class Solution(object):
             head = temp
         return pre
         
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        
+        mid = self.find_mid(head)
+        a = self.reverse(mid)
+        
+        while head and a:
+            if head.val != a.val:
+                return False
+            head = head.next
+            a = a.next
+        return True
+    
+    def find_mid(self, head):
+        slow = head
+        fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
+        
+    
+    def reverse(self, head):
+        pre = None
+        while head:
+            temp = head.next
+            head.next = pre
+            pre = head
+            head = temp
+        return pre

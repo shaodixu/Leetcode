@@ -47,3 +47,32 @@ b:110 -6
 a&b = 100
 a|b = 111
 a^b = 011     if two things are different, it is 1, otherwise 0.
+
+
+
+while usage
+38
+
+class Solution(object):
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        string = '1'
+        for i in range(n-1):
+            string = self.getNext(string)
+        return string
+    
+    def getNext(self, string):
+        i = 0
+        nextStr = ""
+        while i < len(string):          
+            cnt = 1
+            while i < len(string) -1 and string[i] == string[i+1]:   # the order of these two conditions can not change.
+                cnt += 1
+                i += 1
+            nextStr += str(cnt) + string[i]
+            i +=1
+        return nextStr  
+        

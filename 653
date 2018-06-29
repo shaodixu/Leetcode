@@ -27,3 +27,33 @@ class Solution(object):
                 return True
             lookup[num] = i
         return False
+
+
+
+class Solution:
+    def findTarget(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: bool
+        """
+        self.res = []
+        self.inorder(root)
+        return self.find(self.res, k)
+        
+    
+    
+    def inorder(self, root):
+        if root == None:
+            return
+        self.inorder(root.left)
+        self.res.append(root.val)
+        self.inorder(root.right)
+        
+    def find(self, nums, target):
+        dic = {}
+        for i, num in enumerate(nums):
+            if target - num in dic:
+                return True
+            dic[num] = i
+        return False

@@ -32,4 +32,39 @@ class Solution(object):
             if end- start > self.longestSize and s[start] == s[end]:
                 self.longestSize = end-start
                 self.longestStart = start
-        
+     
+     
+     
+     
+     
+     
+ class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        self.b = ""
+    
+        for i in range(len(s)):
+            self.check_odd(i, s)
+            self.check_even(i, s)
+        return self.b
+    
+    
+    def check_odd(self, i, s):
+        start = i
+        end = i
+        while start >=1  and end < len(s)-1 and s[start -1] == s[end+1]:
+            start -= 1
+            end += 1
+        if len(s[start:end+1]) > len(self.b):
+            self.b = s[start:end+1] 
+    def check_even(self, i, s):
+        start = i
+        end = i + 1
+        while start >= 1 and end < len(s) - 1 and s[start] == s[end] and s[start -1] == s[end+1]:
+            start -= 1
+            end += 1
+        if len(s[start:end+1]) > len(self.b) and s[start] == s[end]:
+            self.b = s[start:end +1]

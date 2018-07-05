@@ -36,3 +36,35 @@ class Solution(object):
         
         print nums
         return
+
+
+
+class Solution:
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        
+        
+        m = 0
+        n = 0
+        for i in reversed(range(len(nums)-1)):
+            if nums[i] < nums[i + 1]:
+                m = i
+                break
+            if i == 0:
+                nums.sort()
+                return
+        
+        for j in reversed(range(len(nums))):
+            if nums[j] > nums[m]:
+                n = j
+                break
+        
+        nums[m], nums[n] = nums[n], nums[m]
+        
+        nums[m+1:] = sorted(nums[m+1:])
+        
+        
+        

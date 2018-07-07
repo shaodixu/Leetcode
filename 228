@@ -27,3 +27,25 @@ class Solution(object):
                     R.append(str(x)+"->"+str(y))
             # print(R)
         return R
+
+
+
+class Solution:
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        res = []
+        if not nums:
+            return []
+        j = 0
+        for i in range(len(nums)):
+            if i == len(nums) - 1 or nums[i] + 1 != nums[i+1]:
+                if i != j:
+                    res.append(str(nums[j]) + "->" + str(nums[i]))
+                    j = i + 1
+                else:
+                    res.append(str(nums[i]))
+                    j = i + 1
+        return res

@@ -31,3 +31,38 @@ class Solution(object):
             res.append(a*1.0/size)
         return res
     
+
+
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def averageOfLevels(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[float]
+        """
+        res = []
+        ret = []
+        
+        def preorder(root, level):
+            if root == None:
+                return
+            if len(res) < level+1:
+                res.append([])
+            res[level].append(root.val)
+            preorder(root.left, level+1)
+            preorder(root.right, level + 1)
+        
+        preorder(root, 0)
+        
+        for item in res:
+            ret.append(sum(item)/len(item))
+        return ret

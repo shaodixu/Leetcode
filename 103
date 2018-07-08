@@ -61,6 +61,7 @@ class Solution(object):
 
 
 
+#similar to preorder
 
 # Definition for a binary tree node.
 # class TreeNode:

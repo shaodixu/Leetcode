@@ -20,3 +20,24 @@ class Solution(object):
                 temp.pop()
         dfs(self.res, [], k, n, 1)
         return self.res
+
+
+
+class Solution:
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        def dfs(n,temp, k, index):
+            if k == 0 and n == 0:
+                self.res.append(temp[:])
+                return 
+            for i in range(index, 10):
+                temp.append(i)
+                dfs(n -i, temp, k-1, i+1)
+                temp.pop()
+        dfs(n, [], k, 1)
+        return self.res

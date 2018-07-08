@@ -40,5 +40,24 @@ class Solution(object):
                 x += 1
         
   
+  
+  class Solution:
+    def combine(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        def dfs(n, temp, k, index):
+            if k == 0:
+                self.res.append(temp[:])
+                return
+            for i in range(index, n):
+                temp.append(i + 1)
+                dfs(n, temp, k-1, i+1)
+                temp.pop()
+        dfs(n, [], k, 0)
+        return self.res
 
     

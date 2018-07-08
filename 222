@@ -32,3 +32,38 @@ class Solution(object):
             res += 1
         return res
     
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def countNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        left = self.leftDepth(root)
+        right = self.rightDepth(root)
+        if left == right:
+            return 2**left -1
+        
+        return 1 + self.countNodes(root.left) + self.countNodes(root.right)
+        
+    def leftDepth(self, root):
+        res = 0
+        while root:
+            root = root.left
+            res += 1
+        return res
+    
+    def rightDepth(self, root):
+        res = 0
+        while root:
+            root = root.right
+            res += 1
+        return res

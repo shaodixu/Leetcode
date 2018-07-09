@@ -18,3 +18,24 @@ class Solution:
         mi = min(f[n])
         return mi
             
+
+
+class Solution:
+    def minimumTotal(self, f):
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        n = len(f)
+        
+        
+        for i in range(0, n):
+            for j in range(0, i+1):
+               
+                if i ==0 and j == 0:continue
+                if j ==0: f[i][j] += f[i-1][j]
+                elif j==i: f[i][j] += f[i-1][j-1]
+                else: f[i][j] += min(f[i-1][j], f[i-1][j-1])
+        
+        mi = min(f[n-1])
+        return mi

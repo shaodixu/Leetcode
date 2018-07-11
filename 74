@@ -1,27 +1,23 @@
-class Solution(object):
+class Solution:
     def searchMatrix(self, matrix, target):
         """
         :type matrix: List[List[int]]
         :type target: int
         :rtype: bool
         """
-        
-    
-    
         if not matrix or len(matrix) == 0:
             return False
         row = len(matrix)
         col = len(matrix[0])
-        begin = 0
-        end = row * col -1
-        while begin <= end:
-            mid = (end-begin)/2 + begin
-            value = matrix[mid/col][mid%col]
+        left = 0
+        right = row*col - 1
+        while left <= right:
+            mid = (right - left)//2 + left
+            value = matrix[mid//col][mid%col]
             if value == target:
                 return True
             elif value < target:
-                begin = mid + 1
+                left = mid + 1
             else:
-                end = mid - 1
+                right = mid -1
         return False
-    

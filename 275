@@ -1,17 +1,17 @@
-class Solution(object):
+class Solution:
     def hIndex(self, citations):
         """
         :type citations: List[int]
         :rtype: int
         """
-        N = len(citations)
-        low, high = 0, N - 1
-        while low <= high:
-            mid = (low + high) / 2
-            if N- mid == citations[mid]:
-                return N-mid
-            if N - mid > citations[mid]:
-                low = mid + 1
+        length = len(citations)
+        left, right = 0, length - 1
+        while left <= right:
+            mid = (left + right) //2
+            if length - mid == citations[mid]:
+                return length - mid
+            if length - mid > citations[mid]:
+                left = mid + 1
             else:
-                high = mid - 1
-        return N - low
+                right = mid -1
+        return length - left

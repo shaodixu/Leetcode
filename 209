@@ -1,20 +1,18 @@
-class Solution(object):
+class Solution:
     def minSubArrayLen(self, s, nums):
         """
         :type s: int
         :type nums: List[int]
         :rtype: int
         """
-        
-        # sliding window
         res = float('inf')
         left = 0
-        _sum = 0
+        total = 0
         for i in range(len(nums)):
-            _sum += nums[i]
-            while left <= i and _sum>=s:
-                res = min(res, i - left + 1)
-                _sum -= nums[left]
+            total += nums[i]
+            while left <= i and total >= s:
+                res = min(res, i -left + 1)
+                total -= nums[left]
                 left += 1
         if res == float('inf'):
             return 0

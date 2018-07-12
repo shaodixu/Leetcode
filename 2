@@ -80,3 +80,42 @@ class Solution:
         if carry == 1:
             current.next = ListNode(1)
         return dummy.next
+
+
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *p1 = l1;
+        ListNode *p2 = l2;
+        ListNode *res;
+        ListNode *curr;
+        bool first = true;
+        int carry = 0;
+        
+        while(l1 != NULL || l2 != NULL || carry != 0) {
+            int num = 0;
+            if (l1 != NULL) {
+                num += l1->val;
+                l1 = l1->next;
+            }
+            if (l2 != NULL) {
+                num += l2->val;
+                l2 = l2->next;
+            }
+            num += carry;
+            carry = num/10;
+            
+            ListNode *temp = new ListNode(num%10);
+            if (first) {
+                res = temp;
+                curr = temp;
+                first = false;
+            } else {
+                curr->next = temp;
+                curr = curr->next;
+            }
+        }
+        return res;
+    }
+};

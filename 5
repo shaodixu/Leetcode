@@ -68,3 +68,47 @@ class Solution(object):
             end += 1
         if len(s[start:end+1]) > len(self.b) and s[start] == s[end]:
             self.b = s[start:end +1]
+
+
+
+string longestPalindrome(string s) {
+    
+    int len=s.size();        
+    
+        if (len < 2) return s;
+    
+        int i, start=0, maxlen=1;
+        int low, high;
+
+        for(i=1; i<len; i++) {
+
+            //  start checking for even length
+
+            low=i-1; high=i;
+
+            while(low >= 0 && high < len && s[low] == s[high]) {
+
+                if(high-low+1 > maxlen) {   //  a new longer palindrome found
+                    start = low;
+                    maxlen = high-low+1;
+                }
+
+                low--; high++;
+            }
+
+            //  start checking for odd length
+
+            low=i-1; high=i+1;
+
+            while(low >= 0 && high < len && s[low] == s[high]) {
+
+                if(high-low+1 > maxlen) {   //  a new longer palindrome found
+                    start = low;
+                    maxlen = high-low+1;
+                }
+
+                low--; high++;
+        }
+        }
+
+        return (s.substr(start, maxlen)); 

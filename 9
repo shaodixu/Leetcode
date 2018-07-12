@@ -6,3 +6,24 @@ class Solution(object):
         """
          
         return str(x)[::-1] == str(x)
+
+
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string str1 = std::to_string(x);
+        string str2 = std::to_string(x);
+        std::reverse(str1.begin(), str1.end());
+        if(str1 == str2){
+            return true;
+        }
+        return false;
+        
+    }
+};
+
+
+
+
+

@@ -1,5 +1,5 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
@@ -12,14 +12,14 @@ class Solution(object):
         """
         if not head:return None
         dummy = ListNode(0)
-        preNode = dummy
-        curNode = head
-        realNode = dummy
-        while curNode:
-            if (preNode == dummy or preNode.val != curNode.val) and (curNode.next == None or curNode.val != curNode.next.val):
-                realNode.next = curNode
-                realNode = curNode
-            preNode = curNode
-            curNode = curNode.next
-            preNode.next = None
+        pre = dummy
+        cur = head
+        real = dummy
+        while cur:
+            if (pre == dummy or pre.val != cur.val) and (cur.next == None or cur.val != cur.next.val):
+                real.next = cur
+                real = cur
+            pre = cur
+            cur = cur.next
+            pre.next = None
         return dummy.next

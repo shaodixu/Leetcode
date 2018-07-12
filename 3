@@ -30,3 +30,30 @@ class Solution:
             res = max(res, i - j + 1)         
             dic[num] = i
         return res
+
+
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char, int> map_char;
+	    int max_Len = 0;
+	    int i = 0, j = 0;
+	    for(;i<s.length();i++)
+	    {
+		    if (map_char[s[i]])		// 如果已经出现过该字符
+		    {
+			    while (j+1 < i && s[j] != s[i])     // 将后面的索引向前移动
+				    map_char[s[j++]]--;     // 相应字符从字典中去除
+			    j++;    //将后面的索引移到重复的字符的后面一位
+		    }
+		    else
+			    map_char[s[i]]++;   // 对字典相应位置加1
+		    max_Len = max(max_Len, i-j+1);
+	    }
+	    return max_Len;
+    }
+};
+
+
+Sort By

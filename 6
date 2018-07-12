@@ -21,3 +21,35 @@ class Solution(object):
         for c in rows:
             ss += c
         return ss
+
+
+
+class Solution {
+public:
+string convert(string s, int numRows) {
+if(numRows==1) return s;
+int lenght = s.size();
+vectorzz(numRows);
+bool dir;
+int row = 0;
+
+    for(int i=0; i<lenght; i++){
+        zz[row].push_back(s[i]);
+        
+        if(row==numRows-1)
+            dir = false;
+        else if(row==0)
+            dir = true;
+        
+        dir? row++ : row--;
+    }
+    string result;
+    for(int i=0; i<zz.size(); i++){
+        for(int j=0; j<zz[i].size(); j++){
+            result = result + zz[i][j];
+        }
+    }
+    
+    return result;
+}
+};

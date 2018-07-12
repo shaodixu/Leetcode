@@ -5,3 +5,15 @@ class Solution(object):
         :rtype: List[int]
         """
         return [i >> 1 ^ i for i in xrange(1 << n)]
+
+
+class Solution {
+public:
+    vector<int> grayCode(int n) {
+        vector<int> result;
+        for(int i = 0; i < 1 <<n; ++i){
+            result.emplace_back(i >> 1^i);
+        }
+        return result;
+    }
+};

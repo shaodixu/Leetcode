@@ -11,3 +11,15 @@ class Solution(object):
         for i in range(1, num+1):
             res.append(res[i&(i-1)]+ 1)
         return res
+
+
+class Solution {
+public:
+    vector<int> countBits(int num) {
+        vector<int> res = vector<int>(num+1, 0);
+        for(int i = 1; i <= num; i++){
+            res[i] = res[i&(i - 1)] + 1;
+        }
+        return res;
+    }
+};

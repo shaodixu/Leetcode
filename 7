@@ -6,3 +6,22 @@ class Solution(object):
         """
         x = int(str(x)[::-1]) if x >= 0 else -int(str(-x)[::-1])
         return x if abs(x)<0x7FFFFFFF else 0
+
+
+class Solution {
+public:
+    int reverse(int x) {
+        int result = 0;
+        while (x) {
+            auto prev = result;
+            result *= 10;
+            result += x%10;
+            if (result/10 != prev){
+                result = 0;
+                break;
+            }
+            x /= 10;
+        }
+        return result;
+    }
+};

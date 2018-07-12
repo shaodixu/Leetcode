@@ -1,14 +1,15 @@
-class Solution(object):
+class Solution:
     def arrangeCoins(self, n):
         """
         :type n: int
         :rtype: int
         """
-        l, r = 0, n
-        while l <= r:
-            m = (l + r) / 2
-            if m * (m + 1) / 2 > n:
-                r = m - 1
+        left = 0
+        right = n
+        while left <= right:
+            mid = (left + right)//2
+            if mid*(mid+1) //2 > n:
+                right = mid - 1
             else:
-                l = m + 1
-        return r
+                left = mid + 1
+        return right

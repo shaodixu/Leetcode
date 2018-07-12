@@ -13,3 +13,18 @@ class Solution:
             else:
                 left = mid + 1
         return right
+
+
+class Solution:
+    def arrangeCoins(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        k = 1
+        
+        while n >= 0:
+            n -= k
+            k += 1
+            
+        return k - 2

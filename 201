@@ -15,3 +15,16 @@ class Solution(object):
 
 同位保留法：仔细想想就可以发现，题目要求返回的不就是m和n的二进制表示中共同的“左子串”吗？那么我们不断对m和n右移直到两者相等，就巧妙地消除了异位，保留了同位。最后再对m或者n进行左移复原，就巧妙地得到了要求的结果。
 
+
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        int offset = 0;
+        while(m != n){
+            m >>= 1;
+            n >>= 1;
+            offset++;
+        }
+        return m<<offset;
+    }
+};

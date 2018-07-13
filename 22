@@ -16,3 +16,30 @@ class Solution(object):
             self.generateParenthesisRecu(result, current + "(", left + 1, right, n)
         if left > right:
             self.generateParenthesisRecu(result, current + ")", left, right + 1, n)
+
+
+
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        ret = {};
+        search(n, 0, "");
+        return ret;
+        
+    }
+private:
+    vector<string> ret;
+    void search(int n, int offset, string prefix){
+        if (n==0 && offset ==0)
+            ret.push_back(prefix);
+        else if (n<0 || offset < 0){
+            return;
+        }
+        else{
+            search(n-1, offset+1, prefix+"(");
+            search(n, offset -1, prefix+")");
+        }
+    }
+};
+
+

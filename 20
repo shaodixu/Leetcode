@@ -12,3 +12,26 @@ class Solution(object):
             elif len(stack) == 0 or lookup[stack.pop()] != a:
                 return False
         return len(stack) == 0
+
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        unordered_map<char, char> dic = {{'(', ')'}, {'[', ']'}, {'{', '}'}};
+        string mem = "";
+        for (int i= 0; i < s.size(); i++){
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{'){
+                mem += s[i];
+            }else{
+                if (s[i] != dic[mem.back()])
+                    return false;
+                else
+                    mem.pop_back();
+            }
+        }
+        return mem.empty();
+    }
+};
+
+

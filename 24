@@ -22,3 +22,32 @@ class Solution(object):
         pre.next = dummy.next
         dummy.next = dummy.next.next
         pre.next.next = dummy
+
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode *cur = head;
+        while(cur && cur->next){
+            int tmp = cur->val;
+            cur->val = cur->next->val;
+            cur->next->val = tmp;
+            
+            ListNode *curNextNext = cur->next->next;
+            cur = curNextNext;
+        }
+        return head;
+        
+    }
+};
+
+

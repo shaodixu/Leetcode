@@ -16,3 +16,27 @@ class Solution(object):
         if root.left == None or root.right == None:
             return max(self.minDepth(root.left), self.minDepth(root.right))+1
         return min(self.minDepth(root.left), self.minDepth(root.right))+1
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+#把所有节点考虑进去
+class Solution:
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root == None:
+            return 0
+        if (root.left == None and root.right) or (root.right == None and root.left):
+            return 1 + max(self.minDepth(root.left), self.minDepth(root.right))        
+        if root.left == None and root.right == None:
+            return 1 + max(self.minDepth(root.left), self.minDepth(root.right))
+        if root.left and root.right:
+            return 1 + min(self.minDepth(root.left), self.minDepth(root.right))

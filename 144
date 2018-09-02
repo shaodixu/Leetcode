@@ -54,7 +54,7 @@ class Solution:
         stack = [root]
         while stack:
             a = stack.pop()
-            result.append(a)
+            result.append(a.val)
             if a.right:
                 stack.append(a.right)
             if a.left:

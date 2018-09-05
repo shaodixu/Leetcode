@@ -16,3 +16,37 @@ class Solution(object):
                 temp.pop()
         dfs(nums, [])
         return self.res
+
+
+
+class Solution:
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        self.used = [False for i in range(len(nums))]
+        if len(nums) == 0:
+            return self.res
+        p = []
+        self.generatePermutation(nums, 0, p)
+        return self.res
+    
+    
+    def generatePermutation(self, nums, index, p):
+        if index == len(nums):
+            self.res.append(p[:])
+            return 
+        
+        for i in range(len(nums)):
+            if self.used[i] ==False:
+                p.append(nums[i])
+                self.used[i] = True
+                self.generatePermutation(nums, index + 1, p)
+                p.pop()
+                self.used[i] = False
+        return 
+ 
+
+

@@ -1,31 +1,32 @@
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 class Solution(object):
-    def reverseBetween(self, head, m, n):
+    def restoreIpAddresses(self, s):
         """
-        :type head: ListNode
-        :type m: int
-        :type n: int
-        :rtype: ListNode
+        :type s: str
+        :rtype: List[str]
         """
-        if not head:return head
-        dummy = ListNode(0)
-        dummy.next = head
-        mNode = head
-        preM = dummy
-        nNode = head
-        for i in range(1, m):
-            preM = mNode
-            mNode = mNode.next
-        for i in range(1, n):
-            nNode = nNode.next
-        while mNode != nNode:
-            preM.next = mNode.next
-            mNode.next = nNode.next
-            nNode.next = mNode
-            mNode = preM.next
-        return dummy.next
+        
+        def helper(s, start, k, result, results):
+            if k == 4:
+                if start == len(s):
+                    results.append(".".join(result))
+                else:
+                    # there are remaining characters, do not add anything
+                    return
+            
+            for i in range(1, 4):
+                if start+i > len(s):
+                    break
+                
+                # leading zeros are not acceptable, e.g. '001', '01'
+                if i > 1 and s[start] == '0':
+                    continue
+                
+                if int(s[start:start+i]) < 256:
+                    helper(s, start+i, k+1, result+[s[start:start+i]], results)
+            
+            return
+        
+        res = []
+        helper(s, 0, 0, [], res)
+        
+        return res

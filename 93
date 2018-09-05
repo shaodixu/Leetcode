@@ -5,10 +5,10 @@ class Solution(object):
         :rtype: List[str]
         """
         
-        def helper(s, start, k, result, results):
+        def helper(s, start, k, result):
             if k == 4:
                 if start == len(s):
-                    results.append(".".join(result))
+                    self.res.append(".".join(result))
                 else:
                     # there are remaining characters, do not add anything
                     return
@@ -22,11 +22,11 @@ class Solution(object):
                     continue
                 
                 if int(s[start:start+i]) < 256:
-                    helper(s, start+i, k+1, result+[s[start:start+i]], results)
+                    helper(s, start+i, k+1, result+[s[start:start+i]])
             
             return
         
-        res = []
-        helper(s, 0, 0, [], res)
+        self.res = []
+        helper(s, 0, 0, [])
         
-        return res
+        return self.res

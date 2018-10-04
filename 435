@@ -37,6 +37,9 @@ public:
 };
 
 
+
+dp
+/**
 /**
  * Definition for an interval.
  * struct Interval {
@@ -47,9 +50,9 @@ public:
  * };
  */
 bool compare(const Interval &a, const Interval &b){
-    if (a.end != b.end)
-        return a.end < b.end;
-    return a.start < b.start;
+    if (a.start != b.start)
+        return a.start < b.start;
+    return a.end < b.end;
 }
 class Solution {
 public:

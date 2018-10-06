@@ -17,3 +17,49 @@ class Solution(object):
             if curr.next: 
                 q.put((curr.next.val, curr.next))
         return dummy.next
+
+
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class CompareListNode{
+public:
+    bool operator()(ListNode* node1, ListNode* node2){
+        return node1->val > node2->val;
+    }
+};
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode *dummyHead = new ListNode(-1);
+        ListNode *curNode = dummyHead;
+        
+        priority_queue<ListNode*, vector<ListNode*>, CompareListNode> q;
+        for ( ListNode* node: lists){
+            if(node != NULL)
+                q.push(node);
+        }
+        
+        while(!q.empty()){
+            ListNode* nextNode = q.top();
+            q.pop();
+            
+            curNode->next = nextNode;
+            if(nextNode->next != NULL)
+                q.push(nextNode->next);
+            nextNode->next = NULL;
+            curNode = curNode->next;
+        }
+        ListNode* ret = dummyHead->next;
+        delete dummyHead;
+        return ret;
+        
+    }
+};

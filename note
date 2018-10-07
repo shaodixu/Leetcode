@@ -2,7 +2,7 @@ binary search:
 
 template<typename T>;
 int binarySearch(T arr[], int n, T target){
-    int l = 0;
+    int l = 0;   在[l....r]范围内寻找target
     int r = n-1;
     while(l<=r){
         int mid = (l+r)/2;

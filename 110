@@ -80,3 +80,35 @@ class Solution:
         if root == None:
             return 0
         return max(self.depth(root.left), self.depth(root.right)) + 1
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int helper(TreeNode* root){
+        if (root == NULL)
+            return 0;
+        return 1+max(helper(root->left), helper(root->right));
+    }
+public:
+    bool isBalanced(TreeNode* root) {
+        if(root == NULL)
+            return true;
+        int k = helper(root->left)-helper(root->right);
+        if(k>1 ||k < -1)
+            return false;
+        return isBalanced(root->left)&& isBalanced(root->right);
+        
+    }
+    
+
+};

@@ -40,3 +40,34 @@ class Solution:
             return 1 + max(self.minDepth(root.left), self.minDepth(root.right))
         if root.left and root.right:
             return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
+
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root == NULL)
+            return 0;
+        if(root->left && root->right)
+            return 1+min(minDepth(root->left), minDepth(root->right));
+        if(root->left== NULL&&root->right != NULL)
+            return 1+minDepth(root->right);
+        if(root->left != NULL && root->right == NULL)
+            return 1+minDepth(root->left);
+        if(root->left == NULL && root->right == NULL)
+            return 1;
+        
+        
+    }
+};

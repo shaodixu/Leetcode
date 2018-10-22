@@ -22,3 +22,31 @@ class Solution(object):
         if max != None and root.val >= max:
             return False
         return self.helper(root.left, min, root.val) and self.helper(root.right, root.val, max)
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return helper(root, LLONG_MIN, LLONG_MAX);
+        
+    }
+public:
+    bool helper(TreeNode* root, long min, long max){
+        if(root == NULL)
+            return true;
+        if(root->val >= max || root->val <= min)
+            return false;
+        
+        return helper(root->left, min, root->val)&&helper(root->right, root->val, max);
+    }
+};

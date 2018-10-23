@@ -13,3 +13,33 @@ class Solution(object):
                 temp.pop()
         dfs(nums, [], 0)
         return self.res
+
+
+
+
+class Solution {
+
+vector<vector<int>>res;
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> temp;
+        solve(nums, 0, temp);
+        return res;
+        
+    }
+
+private:
+    void solve(vector<int>& nums, int index, vector<int> temp){
+        if(index == nums.size()){
+            res.push_back(temp);
+            return;
+        }
+        res.push_back(temp);
+        for(int i = index; i < nums.size(); i++){
+            temp.push_back(nums[i]);
+            solve(nums, i+1, temp);
+            temp.pop_back();
+            
+        }
+    }
+};

@@ -27,3 +27,18 @@ public:
 
 
 
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x < 0)
+            return false;
+        int num = x;
+        long long reverseNum = 0;
+        while(num){
+            reverseNum = reverseNum*10 + num%10;
+            num = num/10;
+        }
+        return x == reverseNum;
+        
+    }
+};

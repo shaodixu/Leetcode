@@ -43,3 +43,28 @@ private:
 };
 
 
+
+
+class Solution {
+private:
+    void generate(int right, int left, const string cur, vector<string>&res){
+        if(left == 0 && right == 0){
+            res.push_back(cur);
+            return;
+        }
+        if(left)
+            generate(right, left-1, cur + "(", res);
+        if(right&&left<right)
+            generate(right - 1, left, cur+")", res);
+            
+    }
+    
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        generate(n, n, "", res);
+        return res;
+        
+        
+    }
+};
